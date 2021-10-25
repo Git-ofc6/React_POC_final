@@ -24,26 +24,22 @@ const ProductCard = (props) => {
             return data.Product_brand === brand;
         })
     }
-
-
-    sorted = brandSort.sort((a, b) => {
-        const isReversed = (sortType === 'asc') ? 1 : -1;
-        return isReversed * a.Product_name.localeCompare(b.Product_name);
-    })
-  
-
     const productsDisplay = [];
     for (let i = 0; i < show; i++) {
-        productsDisplay.push(sorted[i]);
+        productsDisplay.push(brandSort[i]);
     }
 
    const filteredproductsDisplay = productsDisplay.filter(function( element ) {
         return element !== undefined;
      });
+     sorted = filteredproductsDisplay.sort((a, b) => {
+        const isReversed = (sortType === 'asc') ? 1 : -1;
+        return isReversed * a.Product_name.localeCompare(b.Product_name);
+    })
     
     return (
         <div>
-            {filteredproductsDisplay.map(function (Product, i) {
+            {sorted.map(function (Product, i) {
 
                 return (
 
