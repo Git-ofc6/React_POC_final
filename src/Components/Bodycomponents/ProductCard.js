@@ -8,6 +8,7 @@ const ProductCard = (props) => {
     var categorySort;
     var brandSort;
     var sorted;
+    
     if (ProductData.Product_type === "all") {
         categorySort = ProductData;
     } else {
@@ -33,12 +34,16 @@ const ProductCard = (props) => {
 
     const productsDisplay = [];
     for (let i = 0; i < show; i++) {
-        productsDisplay.push(brandSort[i]);
+        productsDisplay.push(sorted[i]);
     }
-    console.log(sorted)
+
+   const filteredproductsDisplay = productsDisplay.filter(function( element ) {
+        return element !== undefined;
+     });
+    
     return (
         <div>
-            {sorted.map(function (Product, i) {
+            {filteredproductsDisplay.map(function (Product, i) {
 
                 return (
 
